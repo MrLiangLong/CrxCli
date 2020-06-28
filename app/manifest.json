@@ -1,0 +1,252 @@
+﻿{
+	"name": "西瓜插件",
+	"version": "1.9.3.2",
+	"manifest_version": 2,
+	"description": "强大的公众号数据增强工具，轻松运营公众号。",
+	"permissions": [
+		"tabs",
+		"<all_urls>",
+		"cookies",
+		"storage",
+		"webRequest",
+		"contextMenus",
+		"webRequestBlocking",
+		"proxy",
+		"https://mp.weixin.qq.com/*",
+		"management",
+		"http://chajian.xiguaji.com/*",
+		"https://chromepluginapi.xiguaji.com/*",
+		"http://xiguaeditorcdn.xiguaji.com/*",
+		"https://xiguaeditorcdn.xiguaji.com/*",
+		"http://chromepluginapi.xiguaji.com/*",
+		"https://img.s.youfenba.com/*",
+     	"https://article.qn.img.youfenba.com/*",
+     	"https://img.test.t.youfen8.cn/*",
+		"https://img.s.youfenba.com/*",
+		"http://article.qn.img.youfenba.com/*",
+     	"http://img.test.t.youfen8.cn/*",
+		"http://img.s.youfenba.com/*",
+ 		"*://*.qpic.cn/*",
+ 		"*://v.qq.com/*",
+ 		"*://chajian-user-collect.xiguaji.com/*",
+ 		"*://chajian-collect.qiniudn.com/*",
+     	"https://chromepluginapi.xiguaji.com/*",
+		"*://plugin-module.xiguaji.com/*"
+    ],
+  "icons": {
+      "128": "static/img/logo.png"
+  },
+  "background":{
+    "matches":["https://mp.weixin.qq.com/*","*://chajian.xiguaji.com/*"],
+    "scripts":[
+      "static/lib/jquery.min.js",
+      "background.js"
+    ]
+  },
+  "browser_action": {
+     "default_popup": "popPage/index.html"
+  },
+ 	"content_security_policy": "script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'unsafe-eval' 'self';",
+ 	"externally_connectable": {
+    "matches": [
+      "*://mp.weixin.qq.com/*",
+      "*://chajian.xiguaji.com/*",
+      "*://plugin.xiguaji.com/*",
+      "*://www.yfb.t1.youfen8.com/*",
+      "*://www.youfenba.com/*",
+      "*://www-yfb-q1.youfenba.com/*",
+      "*://www.yfb.h.youfen8.com/*"
+    ]
+  },
+	"web_accessible_resources": [
+		"static/img/*",
+		"static/inject-resource/*",
+		"static/lib/*"
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*/*"
+			],
+			"css": [
+				"./static/css/component.css"
+			],
+			"js": [
+				"./static/lib/jquery.min.js",
+				"./static/lib/vue.js",
+				"./static/lib/axios.min.js",
+				"./static/content-scripts/csCommon.js",
+				"./static/content-scripts/collectImg.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/*"
+			],
+			"css": [
+				"./static/css/component.css"
+			],
+			"js": [
+				"./static/lib/bootstrap.min.js",
+				"./static/lib/moment.js",
+				"./static/lib/moment.min.js",
+				"./static/lib/daterangepicker.js",
+				"./static/lib/highcharts.js",
+				"./static/lib/highcharts-more.js",
+				"./static/lib/echarts.min.js",
+				"./static/lib/icheck.min.js",
+				"./static/lib/jquery.qrcode.min.js",
+				"./static/lib/calendar.js",
+				"./static/lib/bootstrap-daterangepicker.js",
+				"./static/content-scripts/inspireCenter.js",
+				"./static/content-scripts/wxMenu.js",
+				"./static/content-scripts/wxNavBar.js",
+				"./static/content-scripts/yearlyReport.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/cgi-bin/safecenterstatus*",
+				"*://mp.weixin.qq.com/cgi-bin/newoperatevote*"
+			],
+			"css": [
+				"./static/css/daterangepicker.css",
+       			 "./static/css/monthPicker.css"
+			],
+      "js": [
+        "./static/lib/dataBoardPlugin.js",
+        "./static/lib/monthPicker.js",
+        "./static/content-scripts/dataBoard.js"
+      ]
+		}, {
+			"matches": [
+				"*://chajian.xiguaji.com/*"
+			],
+			"js": [
+				"./static/lib/jquery.min.js",
+				"./static/content-scripts/plugWebsite.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/"
+			],
+			"js": [
+				"./static/content-scripts/wxLogin.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/cgi-bin/bizlogin*"
+			],
+			"js": [
+				"./static/content-scripts/wxBizLogin.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/misc/appmsgcomment*"
+			],
+			"js": [
+				"./static/content-scripts/leaveMsg.js"
+			]
+		}, {
+      "matches": [
+        "*://mp.weixin.qq.com/advanced/autoreply*"
+      ],
+      "js": [
+        "./static/content-scripts/automaticReply.js"
+      ]
+    }, {
+			"matches": [
+				"*://mp.weixin.qq.com/cgi-bin/home?t=home/index*"
+			],
+			"js": [
+				"./static/lib/monthPicker.js",
+				"./static/content-scripts/wxHome.js",
+        "./static/content-scripts/materiaLibrary.js"
+			],
+			"css": [
+				"./static/css/daterangepicker.css",
+				"./static/css/monthPicker.css"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit*",
+				"*://mp.weixin.qq.com/cgi-bin/appmsgtemplate?action=edit*"
+			],
+			"js": [
+				"./static/lib/react.production.min.js",
+				"./static/lib/react-dom.production.min.js",
+				"./static/lib/react-photo-layout-editor.js",
+				"./static/content-scripts/wxEditor.js",
+				"./static/content-scripts/styleCenter.js",
+				"./static/content-scripts/wxEditorExtend.js",
+				"./static/lib/jquery.qrcode.min.js"
+			],
+			"css": [
+				"./static/css/PhotoLayoutEditor.css"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/cgi-bin/appmsg?begin=*"
+			],
+			"js": [
+				"./static/content-scripts/materialManage.js"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/misc/appmsganalysis*"
+			],
+			"js": [
+				"./static/lib/monthPicker.js",
+				"./static/content-scripts/essayAnalysis.js"
+			],
+			"css": [
+				"./static/css/monthPicker.css"
+			]
+		}, {
+			"matches": [
+				"*://mp.weixin.qq.com/s?*",
+				"*://w.url.cn/s*",
+				"*://mp.weixin.qq.com/s/*"
+			],
+			"js": [
+				"./static/lib/gemini-scrollbar.js",
+				"./static/content-scripts/wxArtical.js"
+			],
+			"css": [
+				"./static/css/gemini-scrollbar.css"
+			]
+		}, {
+			"matches": [
+				"*://weixin.sogou.com/weixin?*"
+			],
+			"js": [
+				"./static/lib/jquery.min.js",
+				"./static/content-scripts/sogoSearch.js"
+			]
+		}, {
+			"matches": [
+				"*://weixin.sogou.com/"
+			],
+			"js": [
+				"./static/lib/jquery.min.js",
+				"./static/content-scripts/sogoHome.js"
+			]
+		},{
+        	"matches": [
+            "*://mp.weixin.qq.com/cgi-bin/message?t=*",
+            "*://mp.weixin.qq.com/cgi-bin/singlesendpage*"
+          ],
+        	"js": ["./static/content-scripts/activeResponse.js"]
+	 },{
+		"matches": ["*://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit*"],
+		"js":["./static/content-scripts/statisticalWord.js"]
+	 }, {
+			"matches": ["*://mp.weixin.qq.com/advanced/advanced*"],
+			"js": ["./static/content-scripts/hotSpot.js"]
+		},{
+			"matches": ["*://mp.weixin.qq.com/cgi-bin/masssendpage*"],
+			"js": ["./static/content-scripts/timingGroupSend.js"]
+		},{
+      "matches": ["*://www.toutiao.com/*"],
+      "js": ["./static/content-scripts/headbandCollection.js"]
+    }
+	]
+}
